@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Github License Summary",
+  "version": "1.0",
+  "description": "An extension to show license summary on Github repository",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://github.com/*/*"
+      ],
+      "js": [
+        "src/main.js"
+      ],
+      "css": [
+        "src/main.css"
+      ]
+    }
+  ]
+}
