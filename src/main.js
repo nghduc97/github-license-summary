@@ -27,12 +27,23 @@ const getInfo = async (url) => {
   }
 }
 
+// Check if filename should be a license
+const validLicenseNames = [
+  'LICENSE',
+  'LICENSE.txt',
+  'LICENSE.md'
+]
+
+const isLicense = (filename) => {
+  return validLicenseNames.indexOf(filename) >= 0
+}
+
 // For desktop view
 document
   .querySelectorAll('.js-navigation-item > .content > span > a') // select files
   .forEach(async (licenseElement) => {
     // check if is LICENSE file
-    if (licenseElement.innerText !== 'LICENSE') {
+    if (!isLicense(licenseElement.innerText)) {
       return
     }
 
