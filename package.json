@@ -22,8 +22,5 @@
     "eslint-watch": "^3.1.2",
     "npm-run-all": "^4.1.1",
     "web-ext": "^2.0.0"
-  },
-  "dependencies": {
-    "axios": "^0.16.2"
   }
 }
