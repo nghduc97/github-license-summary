@@ -34,25 +34,25 @@ const validLicenseNames = [
   'LICENSE.md'
 ]
 
-const isLicense = (filename) => {
-  return validLicenseNames.indexOf(filename) >= 0
+const isLicense = (element) => {
+  return validLicenseNames.indexOf(element.innerText) >= 0
 }
 
 // For desktop view
 document
   .querySelectorAll('.js-navigation-item > .content > span > a') // select files
-  .forEach(async (licenseElement) => {
+  .forEach(async (element) => {
     // check if is LICENSE file
-    if (!isLicense(licenseElement.innerText)) {
+    if (!isLicense(element)) {
       return
     }
 
     // get license summary
-    const url = 'https://github.com/' + licenseElement.getAttribute('href')
+    const url = 'https://github.com/' + element.getAttribute('href')
     const info = await getInfo(url)
 
     // // Add to UI
-    const parentElement = licenseElement.parentElement
+    const parentElement = element.parentElement
     parentElement.appendChild(createDesktopNameElement(info.licenseName))
     parentElement.appendChild(createDesktopSummaryElement(info.summaryHTML))
   })
