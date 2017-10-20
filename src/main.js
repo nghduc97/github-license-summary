@@ -1,56 +1,45 @@
-const createDesktopSummaryElement = (html) => {
-  const el = document.createElement('div')
-  el.classList.add('desktop-license-summary')
-  el.innerHTML = html
-  return el
+const getAncestor = (element, step) => {
+  let target = element
+  for (let i = 0; i < step; ++i) {
+    target = target.parentElement
+  }
+  return target
 }
 
-const createDesktopNameElement = (licenseName) => {
-  const el = document.createElement('span')
-  el.classList.add('desktop-license-name')
-  el.innerText = licenseName
-  return el
-}
-
-const getInfo = async (url) => {
+const getSummary = async (url) => {
   const response = await fetch(url) // Fetch the license page's HTML
   const html = await response.text()
 
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, 'text/html')
+  const iconElement = doc.getElementsByClassName('octicon-law').item(0)
+  return getAncestor(iconElement, 2)
+}
 
-  return {
-    licenseName: doc.getElementById('LC1').innerText,
-    summaryHTML: doc.querySelector('.Box .column').parentElement.innerHTML
+const loadDesktopView = async () => {
+  // Find license summary element from the law icon
+  const iconElement = document.getElementsByClassName('octicon-law').item(0)
+  if (iconElement) {
+    try {
+      const licenseElement = getAncestor(iconElement, 1)
+      const url = 'https://github.com' + licenseElement.getAttribute('href')
+      const summaryElement = await getSummary(url)
+      summaryElement.classList.add('desktop-license-summary')
+
+      const fileNavElement = document.getElementsByClassName('file-navigation').item(0)
+      getAncestor(fileNavElement, 1).insertBefore(summaryElement, fileNavElement)
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
-// Check if filename should be a license
-const validLicenseNames = [
-  'LICENSE',
-  'LICENSE.txt',
-  'LICENSE.md'
-]
-
-const isLicense = (element) => {
-  return validLicenseNames.indexOf(element.innerText) >= 0
+const loadMobileView = async () => {
 }
 
-// For desktop view
-document
-  .querySelectorAll('.js-navigation-item > .content > span > a') // select files
-  .forEach(async (element) => {
-    // check if is LICENSE file
-    if (!isLicense(element)) {
-      return
-    }
-
-    // get license summary
-    const url = 'https://github.com/' + element.getAttribute('href')
-    const info = await getInfo(url)
-
-    // // Add to UI
-    const parentElement = element.parentElement
-    parentElement.appendChild(createDesktopNameElement(info.licenseName))
-    parentElement.appendChild(createDesktopSummaryElement(info.summaryHTML))
-  })
+// For desktop view, will replace 'true' with check is desktop later
+if (true) { // eslint-disable-line no-constant-condition
+  loadDesktopView()
+} else {
+  loadMobileView()
+}
