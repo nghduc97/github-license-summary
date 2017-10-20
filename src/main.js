@@ -26,6 +26,7 @@ const loadDesktopView = async () => {
       const summaryElement = await getSummary(url)
       summaryElement.classList.add('desktop-license-summary')
 
+      // insert element
       const fileNavElement = document.getElementsByClassName('file-navigation').item(0)
       getAncestor(fileNavElement, 1).insertBefore(summaryElement, fileNavElement)
     } catch (err) {
