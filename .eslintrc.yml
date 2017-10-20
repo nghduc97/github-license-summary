@@ -1,1 +1,4 @@
 extends: standard
+globals:
+  DOMParser: true
+  fetch: true

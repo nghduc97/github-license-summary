@@ -1,5 +1,3 @@
-/* global fetch DOMParser */
-
 const createDesktopSummaryElement = (html) => {
   const el = document.createElement('div')
   el.classList.add('desktop-license-summary')
