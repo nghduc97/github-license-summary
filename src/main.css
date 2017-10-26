@@ -1,3 +1,8 @@
 .desktop-license-summary {
   margin-top: 15px;
 }
+
+.desktop-license-summary-loader {
+  padding: 10px;
+  text-align: center;
+}
