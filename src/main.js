@@ -31,6 +31,11 @@ const createLoaderElement = () => {
 }
 
 const loadDesktopView = async () => {
+  // Don't load our element again
+  if (document.getElementsByClassName('desktop-license-summary').length > 0) {
+    return
+  }
+
   // Find license summary element from the law icon
   const iconElement = document.getElementsByClassName('octicon-law').item(0)
   if (iconElement) {
@@ -70,9 +75,17 @@ const loadDesktopView = async () => {
 const loadMobileView = async () => {
 }
 
-// For desktop view, will replace 'true' with check is desktop later
-if (true) { // eslint-disable-line no-constant-condition
-  loadDesktopView()
-} else {
-  loadMobileView()
+const loadView = () => {
+  // For desktop view, will replace 'true' with check is desktop later
+  if (true) { // eslint-disable-line no-constant-condition
+    loadDesktopView()
+  } else {
+    loadMobileView()
+  }
 }
+
+loadView()
+
+browser.runtime.onMessage.addListener((message) => {
+  loadView()
+})

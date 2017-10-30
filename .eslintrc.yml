@@ -2,3 +2,4 @@ extends: standard
 globals:
   DOMParser: true
   fetch: true
+  browser: true

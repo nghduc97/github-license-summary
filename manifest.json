@@ -3,6 +3,9 @@
   "name": "Github License Summary",
   "version": "1.0",
   "description": "An extension to show license summary on Github repository",
+  "background": {
+    "scripts": ["src/background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -13,7 +16,11 @@
       ],
       "css": [
         "src/main.css"
-      ]
+      ],
+      "run_at": "document_end"
     }
+  ],
+  "permissions": [
+    "webNavigation"
   ]
 }
