@@ -6,7 +6,7 @@ An extension to show license summary on Github repository.
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mozilla_Firefox_logo_2013.svg/512px-Mozilla_Firefox_logo_2013.svg.png" width="64" height="64">
 </a>
 <a href="https://chrome.google.com/webstore/detail/github-license-summary/djggpjgjhhlablnfnnaafondleodmeom">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Google_Chrome_for_Android_Icon_2016.svg/512px-Google_Chrome_for_Android_Icon_2016.svg.png" width="64" height="64">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/512px-Google_Chrome_icon_%28September_2014%29.svg.png" width="64" height="64">
 </a>
 
 ## Screenshot
